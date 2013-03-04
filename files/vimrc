@@ -1,0 +1,80 @@
+" Environment {{{
+    set nocompatible
+    scriptencoding utf-8
+    set termencoding=utf-8
+    set autochdir
+    " Directories {
+        silent execute '!mkdir -p $HOME/.vim/tmp/{backup,swap,view,undo}'
+        set backupdir=$HOME/.vim/tmp/backup/
+        set backup
+        set directory=$HOME/.vim/tmp/swap/
+        set viewdir=$HOME/.vim/tmp/view/
+        set undodir=$HOME/.vim/tmp/undo/
+        " store undo files, undo edits after deleting a buffer
+        set undofile
+        set viminfo='50,n$HOME/.vim/tmp/viminfo
+    " }
+" }}}
+" Editing {{{
+    set tabstop=8
+    set shiftwidth=4
+    set softtabstop=4
+    set expandtab
+    set autoindent
+" }}}
+" Visuals {{{
+    set visualbell
+    set title
+    syntax on
+    set relativenumber
+    set modeline
+    set showmode
+    set showcmd
+    set showmatch
+    set incsearch
+    set hlsearch
+    set wildmenu
+    set wildmode=list:longest,full
+    set list
+    set listchars=tab:▸\ ,eol:¬
+    set showbreak=↪
+    set ttyfast
+    set ruler
+    set textwidth=80
+    set wrapmargin=80
+    set formatoptions=qrn1
+    set colorcolumn=80
+    set splitright splitbelow
+    set shortmess+=afilmnrxoOtT
+    set viewoptions=folds,options,cursor,unix,slash
+    " Coloring {
+        colors elflord
+        highlight Folded term=standout ctermfg=0 ctermbg=7 guifg=Black guibg=gray5
+        highlight WhitespaceEOL ctermbg=Red guibg=Red
+        match WhitespaceEOL /\s\+$/
+    " }
+
+" }}}
+" Maps {{{
+    let mapleader=','
+
+    " Force yourself to learn proper vim {
+        nnoremap <UP> <NOP>
+        nnoremap <DOWN> <NOP>
+        nnoremap <LEFT> <NOP>
+        nnoremap <RIGHT> <NOP>
+        inoremap <UP> <NOP>
+        inoremap <DOWN> <NOP>
+        inoremap <LEFT> <NOP>
+        inoremap <RIGHT> <NOP>
+        vnoremap <UP> <NOP>
+        vnoremap <DOWN> <NOP>
+        vnoremap <LEFT> <NOP>
+        vnoremap <RIGHT> <NOP>
+        imap <UP> <NOP>
+        imap <DOWN> <NOP>
+        imap <LEFT> <NOP>
+        imap <RIGHT> <NOP>
+    " }
+" }}}
+" vim:set foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
