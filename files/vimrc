@@ -92,10 +92,6 @@
         vnoremap <DOWN> <NOP>
         vnoremap <LEFT> <NOP>
         vnoremap <RIGHT> <NOP>
-        imap <UP> <NOP>
-        imap <DOWN> <NOP>
-        imap <LEFT> <NOP>
-        imap <RIGHT> <NOP>
     " }
 " }}}
 " vim:set foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
