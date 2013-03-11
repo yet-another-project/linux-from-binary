@@ -74,6 +74,9 @@
 
 " }}}
 " Maps {{{
+    " Use <Leader> in maps, so it's easier to share them, yet still allow
+    " anyone to use them in their own, personalized way. Remember, not all
+    " keyboards have US layout.
     let mapleader=','
 
     " Force yourself to learn proper vim {
