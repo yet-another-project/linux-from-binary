@@ -15,6 +15,23 @@
         set viminfo='50,n$HOME/.vim/tmp/viminfo
     " }
 " }}}
+" Bundles {{{
+    " TODO:
+    " 1. clone vundle into ~/.vim/bundle/vundle
+    " 2. set rtp+=~/.vim/bundle/vundle/
+    " 3. add here: Bundle 'gmarik/vundle'
+    " 4. add here further bundles and a little documentation above each
+    "    Bundle instruction, so you can remember what each bundle is for
+    " 5. In each section below, add corresponding customizations as required
+    "    for that bundle, pinpointing each time for each bundle it is. For
+    "    instance, the 'janson/bufonly.vim' bundle could deserve an entry
+    "    in the 'Maps' section further down below for the :BufOnly command.
+    "    Other bundles could need different configurations spread throughout
+    "    different sections.
+    "    The most important thing here is to document your vimrc. One may
+    "    be unused to this, but since vim is such a powerful editor ...
+    "    WITH GREAT POWER COMES GREAT RESPONSIBILITY
+" }}}
 " Editing {{{
     set tabstop=8
     set shiftwidth=4
