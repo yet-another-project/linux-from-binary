@@ -36,6 +36,19 @@
     "    The most important thing here is to document your vimrc. One may
     "    be unused to this, but since vim is such a powerful editor ...
     "    WITH GREAT POWER COMES GREAT RESPONSIBILITY
+    "
+    " Final note: do not rush into Bundles, try to use vim for at least 1-2
+    "   months, observing repetitive actions in your editing behavior, while fixing
+    "   your muscle memory. For instance, right after `vimtutor` you might
+    "   continuously press j to navigate downwards. That's a repetitive action,
+    "   you could use 20j to go 20 lines below, or other movements.
+    "   See `:help cursor-motions` for a complete list. It's difficult and
+    "   frustrating at first, but it will unleash the full power of vim.
+    "   Oh, and learn touch typing. If you're coding, there is
+    "   http://typing.io/.
+    "
+    "   YOU HAVE TO GROW ALONG YOUR .vimrc, AT A PROPORTIONAL PACE. A .vimrc
+    "   IS SOMETHING VERY PERSONAL AND SHOULD REFLECT YOUR SKILLS.
 " }}}
 " Editing {{{
     set tabstop=8
