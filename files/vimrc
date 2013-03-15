@@ -1,3 +1,49 @@
+""" Introduction {{{
+""" Please read carefully
+"""
+""" A .vimrc is something extremely personal. There is no 'well-written' .vimrc.
+""" There are only well-written ones for a particular person.
+""" The aim of this .vimrc is not primarily to be used as-is, but instead to
+""" provide you with a good starting point for documenting yourself about vim.
+""" Let me emphasize the implications of the previous sentence: You MUST read
+""" this file line-by-line, and type in `:help <keyword>` for each of them, and
+""" learn from the documentation what it does.
+""" These settings are good settings for beginner to intermediate vimmers, so
+""" stick with them until you're confident in your usage with vim.
+"""
+""" Getting confident
+""" -----------------
+""" Vim is not your usual text editor, it's extremely powerful. But for this
+""" power to be unleashed to you, you have to invest some time in it, depending
+""" on your already existing vim skills.
+""" You should first be able to touch type properly. If you're looking at the
+""" keyboard to locate the symbol you want to type, then you're not ready for
+""" being an average vimmer. Look on the web for 'touch typing for programmers'.
+"""
+""" The next step consists of getting fluent at using the most common features:
+""" text-objects, cursor-motions, folds, marks, buffers, windows.
+""" Just type in `:help ` along with one of the keywords above, and read the
+""" help throughly.
+"""
+""" While you're doing this reading on a daily basis, for a few weeks, start
+""" to observ inefficiencies in your editing habits, and try to find shortcuts
+""" for them. Usually, there are more ways of doing the same thing, but there
+""" are a few which may lead to less finger movement.
+""" A good way of finding shortcuts to such inefficiencies is to hang on IRC,
+""" on the #vim channel on freenode. You can learn a lot even by listening to
+""" other people's problems, or you can ask yourself.
+"""
+""" Whatever you do, until you are (very) good at the features mentioned above,
+""" DO NOT alter this .vimrc. Stick with it for a while, DO NOT install scripts,
+""" plugins, bundles, or whatever.
+""" Usually, this takes at least 2 months, if done properly, consciously, at
+""" least 60 minutes a day.
+"""
+""" Once you're there, I would say you're at an intermediate level. Feel free
+""" to follow the steps in the 'Bundles' section below.
+"""
+""" Happy vimming!
+""" }}}
 " Environment {{{
     set nocompatible
     scriptencoding utf-8
