@@ -18,11 +18,15 @@
 " Bundles {{{
     " TODO:
     " 1. clone vundle into ~/.vim/bundle/vundle
-    " 2. set rtp+=~/.vim/bundle/vundle/
-    " 3. add here: Bundle 'gmarik/vundle'
-    " 4. add here further bundles and a little documentation above each
+    " 2. add here: filetype off
+    " 3. add here: set rtp+=~/.vim/bundle/vundle/
+    " 4. add here: call vundle#rc()
+    " 5. add here: Bundle 'gmarik/vundle'
+    " 6. add here further bundles and a little documentation above each
     "    Bundle instruction, so you can remember what each bundle is for
-    " 5. In each section below, add corresponding customizations as required
+    " 7. add here: Helptags
+    " 8. add here: filetype plugin indent on
+    " 9. In each section below, add corresponding customizations as required
     "    for that bundle, pinpointing each time which bundle the
     "    configuration belongs to.
     "    For instance, the 'janson/bufonly.vim' bundle could deserve an entry
