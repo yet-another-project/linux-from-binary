@@ -67,7 +67,7 @@
     set viewoptions=folds,options,cursor,unix,slash
     " Coloring {
         colors elflord
-        highlight Folded term=standout ctermfg=0 ctermbg=7 guifg=Black guibg=gray5
+        highlight Folded term=standout ctermfg=0 ctermbg=7 guifg=Black guibg=ivory3
         highlight WhitespaceEOL ctermbg=Red guibg=Red
         match WhitespaceEOL /\s\+$/
     " }
