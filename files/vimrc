@@ -60,6 +60,9 @@
         set undofile
         set viminfo='50,n$HOME/.vim/tmp/viminfo
     " }
+    " For a more responsive TrapMovementKeys (see below) - learn proper vim
+    " Also for Bundle vim-showmarks
+    set updatetime=1000
 " }}}
 " Bundles {{{
     " TODO:
@@ -155,6 +158,32 @@
         vnoremap <DOWN> <NOP>
         vnoremap <LEFT> <NOP>
         vnoremap <RIGHT> <NOP>
+        " No repetitive HJKL {
+            " Author: Barry Arthur <bairui @ #vim / freenode>
+            let g:cursor_moving = 0
+
+            function! TrapMovementKeys(key)
+                augroup CursorMoving
+                    au!
+                    autocmd CursorMoved * let g:cursor_moving = 1
+                augroup END
+                if ! g:cursor_moving
+                    return a:key
+                else
+                    return ''
+                endif
+            endfunction
+
+            nnoremap <expr> h TrapMovementKeys('h')
+            nnoremap <expr> j TrapMovementKeys('j')
+            nnoremap <expr> k TrapMovementKeys('k')
+            nnoremap <expr> l TrapMovementKeys('l')
+
+            augroup CursorMovingOff
+                au!
+                autocmd CursorHold * let g:cursor_moving = 0
+            augroup END
+        " }
     " }
 " }}}
 " vim:set foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
