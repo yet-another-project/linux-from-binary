@@ -48,7 +48,9 @@
     set nocompatible
     scriptencoding utf-8
     set termencoding=utf-8
+    set encoding=utf-8
     set autochdir
+    set shell=/bin/zsh
     " Directories {
         silent execute '!mkdir -p $HOME/.vim/tmp/{backup,swap,view,undo}'
         set backupdir=$HOME/.vim/tmp/backup/
@@ -105,6 +107,8 @@
     set softtabstop=4
     set expandtab
     set autoindent
+    set fileencodings=utf-8
+    set nojoinspaces
 " }}}
 " Visuals {{{
     set visualbell
@@ -120,11 +124,12 @@
     set wildmenu
     set wildmode=list:longest,full
     set list
-    set listchars=tab:▸\ ,eol:¬
+    set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
     set showbreak=↪
     set ttyfast
+    set lazyredraw
     set ruler
-    set textwidth=80
+    set textwidth=79
     set wrapmargin=80
     set formatoptions=qrn1
     set colorcolumn=80
