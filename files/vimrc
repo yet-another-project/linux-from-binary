@@ -142,6 +142,15 @@
         highlight WhitespaceEOL ctermbg=Red guibg=Red
         match WhitespaceEOL /\s\+$/
     " }
+    " Diff {
+        set diffopt+=iwhite,vertical
+    " }
+    " GUI {
+        if has('gui_running')
+            set guioptions-=T " no toolbars
+            set guioptions+=LlRrb guioptions-=LlRrb " no scrollbars
+        endif
+    " }
 
 " }}}
 " Maps {{{
