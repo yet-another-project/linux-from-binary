@@ -151,7 +151,6 @@
             set guioptions+=LlRrb guioptions-=LlRrb " no scrollbars
         endif
     " }
-
 " }}}
 " Maps {{{
     " Use <Leader> in maps, so it's easier to share them, yet still allow
@@ -209,9 +208,9 @@
         function! TrapMovementKeys(key)
             augroup CursorMoving
                 autocmd!
-                autocmd CursorMoved * let g:cursor_moving = 1
+                autocmd CursorMoved * let g:cursor_moving += 1
             augroup END
-            if ! g:cursor_moving
+            if g:cursor_moving <= 2
                 return a:key
             else
                 return ''
