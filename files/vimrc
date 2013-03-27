@@ -224,4 +224,10 @@
         " }
     " }
 " }}}
+" Abbreviations {{{
+    " Use abbreviations for common text you find yourself typing over and over
+    " again.
+    " Typos {
+    " }
+" }}}
 " vim:set foldmarker={{{,}}} foldlevel=0 foldmethod=marker:
