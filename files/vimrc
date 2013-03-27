@@ -157,7 +157,12 @@
     " Use <Leader> in maps, so it's easier to share them, yet still allow
     " anyone to use them in their own, personalized way. Remember, not all
     " keyboards have US layout.
+    "
+    " Always use the non-recursive map commands (nore)
     let mapleader=','
+    " Use <LocalLeader> for maps which (logistically) map to operations on
+    " the local buffer only.
+    let maplocaleader='\\'
 
     " Force yourself to learn proper vim {
         nnoremap <UP> <NOP>
