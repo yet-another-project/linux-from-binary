@@ -165,25 +165,44 @@
     let maplocaleader='\\'
 
     " Force yourself to learn proper vim {
-        nnoremap <UP> <NOP>
-        nnoremap <DOWN> <NOP>
-        nnoremap <LEFT> <NOP>
-        nnoremap <RIGHT> <NOP>
-        inoremap <UP> <NOP>
-        inoremap <DOWN> <NOP>
-        inoremap <LEFT> <NOP>
-        inoremap <RIGHT> <NOP>
-        vnoremap <UP> <NOP>
-        vnoremap <DOWN> <NOP>
-        vnoremap <LEFT> <NOP>
-        vnoremap <RIGHT> <NOP>
+        set mouse=""
+        " PageDown and PageUp {
+            " there are other vim ways of moving around
+            " learn how to use those instad, like:
+            " marks
+            nnoremap <PageUp> <NOP>
+            nnoremap <PageDown> <NOP>
+            inoremap <PageUp> <NOP>
+            inoremap <PageDown> <NOP>
+            vnoremap <PageUp> <NOP>
+            vnoremap <PageDown> <NOP>
+        " }
+        " Mouse movement {
+            noremap <MiddleMouse> <NOP>
+            noremap <MouseUp> <NOP>
+            noremap <MouseDown> <NOP>
+        " }
+        " Arrow keys {
+            nnoremap <UP> <NOP>
+            nnoremap <DOWN> <NOP>
+            nnoremap <LEFT> <NOP>
+            nnoremap <RIGHT> <NOP>
+            inoremap <UP> <NOP>
+            inoremap <DOWN> <NOP>
+            inoremap <LEFT> <NOP>
+            inoremap <RIGHT> <NOP>
+            vnoremap <UP> <NOP>
+            vnoremap <DOWN> <NOP>
+            vnoremap <LEFT> <NOP>
+            vnoremap <RIGHT> <NOP>
+        " }
         " No repetitive HJKL {
             " Author: Barry Arthur <bairui @ #vim / freenode>
             let g:cursor_moving = 0
 
             function! TrapMovementKeys(key)
-                augroup CursorMoving
-                    au!
+                    augroup CursorMoving
+                    autocmd!
                     autocmd CursorMoved * let g:cursor_moving = 1
                 augroup END
                 if ! g:cursor_moving
@@ -199,7 +218,7 @@
             nnoremap <expr> l TrapMovementKeys('l')
 
             augroup CursorMovingOff
-                au!
+                autocmd!
                 autocmd CursorHold * let g:cursor_moving = 0
             augroup END
         " }
