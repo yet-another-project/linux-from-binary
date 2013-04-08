@@ -1,6 +1,6 @@
 PDFLATEX=xelatex
 PDFFLAGS=-halt-on-error -interaction=nonstopmode -file-line-error
-PROJECT=ArchLinux From Scratch
+PROJECT=Linux From Binary
 MAKEINDEX=makeindex
 MAKEINDEXFLAGS=
 INDICES=abv
