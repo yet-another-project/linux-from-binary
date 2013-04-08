@@ -1,3 +1,10 @@
+## Notice
+We are still working on the desired configurations and commands, so there
+is no content in the book yet.
+
+If you want to get involved, use the mailing list `yet-another-project@googlegroups.com`.
+You can subscribe by sending an e-mail to `yet-another-project-subscribe@googlegroups.com`.
+
 ## ArchLinux From Scratch
 
 This is a book for the pragmatic GNU/Linux user, who wants to get a good
