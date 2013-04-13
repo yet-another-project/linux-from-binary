@@ -44,7 +44,19 @@
 """
 """ Happy vimming!
 """ }}}
+" Bootstrap {{{
+    function! SourceVimDirectory(path)
+        let l:dir = $HOME . '/.vim/' . a:path
+        if isdirectory(l:dir)
+            for myf in split(glob(l:dir . '/*.vim'), '\n')
+                let l:cmd = 'source ' . fnameescape(myf)
+                execute l:cmd
+            endfor
+        endif
+    endfunction
+" }}}
 " Environment {{{
+    call SourceVimDirectory('vimrc/environment-pre')
     set nocompatible
     scriptencoding utf-8
     set termencoding=utf-8
@@ -52,7 +64,8 @@
     set autochdir
     set shell=/bin/zsh
     " Directories {
-        silent execute '!mkdir -p $HOME/.vim/tmp/{backup,swap,view,undo}'
+        let s:localscriptsdir = expand($HOME . '/.vim')
+        silent execute '!mkdir -p ' . s:localscriptsdir . '/tmp/{backup,swap,view,undo}'
         set backupdir=$HOME/.vim/tmp/backup/
         set backup
         set directory=$HOME/.vim/tmp/swap/
@@ -64,44 +77,25 @@
     " }
     " For a more responsive TrapMovementKeys (see below) - learn proper vim
     " Also for Bundle vim-showmarks
-    set updatetime=1000
+    set updatetime=500
+    call SourceVimDirectory('vimrc/environment-post')
 " }}}
 " Bundles {{{
-    " TODO:
-    " 1. clone vundle into ~/.vim/bundle/vundle
-    " 2. add here: filetype off
-    " 3. add here: set rtp+=~/.vim/bundle/vundle/
-    " 4. add here: call vundle#rc()
-    " 5. add here: Bundle 'gmarik/vundle'
-    " 6. add here further bundles and a little documentation above each
-    "    Bundle instruction, so you can remember what each bundle is for
-    " 7. add here: Helptags
-    " 8. add here: filetype plugin indent on
-    " 9. In each section below, add corresponding customizations as required
-    "    for that bundle, pinpointing each time which bundle the
-    "    configuration belongs to.
-    "    For instance, the 'janson/bufonly.vim' bundle could deserve an entry
-    "    in the 'Maps' section further down below for the :BufOnly command.
-    "    Other bundles could need different configurations spread throughout
-    "    different sections.
-    "    The most important thing here is to document your vimrc. One may
-    "    be unused to this, but since vim is such a powerful editor ...
-    "    WITH GREAT POWER COMES GREAT RESPONSIBILITY
-    "
-    " Final note: do not rush into Bundles, try to use vim for at least 1-2
-    "   months, observing repetitive actions in your editing behavior, while fixing
-    "   your muscle memory. For instance, right after `vimtutor` you might
-    "   continuously press j to navigate downwards. That's a repetitive action,
-    "   you could use 20j to go 20 lines below, or other movements.
-    "   See `:help cursor-motions` for a complete list. It's difficult and
-    "   frustrating at first, but it will unleash the full power of vim.
-    "   Oh, and learn touch typing. If you're coding, there is
-    "   http://typing.io/.
-    "
-    "   YOU HAVE TO GROW ALONG YOUR .vimrc, AT A PROPORTIONAL PACE. A .vimrc
-    "   IS SOMETHING VERY PERSONAL AND SHOULD REFLECT YOUR SKILLS.
+    if isdirectory(expand($HOME . '/.vim/bundle/vundle'))
+        call SourceVimDirectory('vimrc/bundles-pre')
+        filetype off
+        set runtimepath+=$HOME/.vim/bundle/vundle
+        call vundle#rc()
+        Bundle 'gmarik/vundle'
+        if filereadable($HOME . '/.vim/bundles.vim')
+            source expand($HOME . '/.vim/bundles.vim')
+        endif
+        filetype plugin indent on
+        call SourceVimDirectory('vimrc/bundles-post')
+    endif
 " }}}
-" Editing {{{
+" vimrc/Editing {{{
+    call SourceVimDirectory('vimrc/editing-pre')
     set tabstop=8
     set shiftwidth=4
     set softtabstop=4
@@ -109,8 +103,10 @@
     set autoindent
     set fileencodings=utf-8
     set nojoinspaces
+    call SourceVimDirectory('vimrc/editing-post')
 " }}}
 " Visuals {{{
+    call SourceVimDirectory('vimrc/visuals-pre')
     set visualbell
     set title
     syntax on
@@ -123,7 +119,12 @@
     set hlsearch
     set wildmenu
     set wildmode=list:longest,full
-    set list
+    if has('multi_byte')
+        set list
+        if $TERM == "linux"
+            set nolist
+        endif
+    endif
     set listchars=tab:▸\ ,eol:¬,extends:»,precedes:«
     set showbreak=↪
     set ttyfast
@@ -151,8 +152,15 @@
             set guioptions+=LlRrb guioptions-=LlRrb " no scrollbars
         endif
     " }
+    " Cursor {
+        autocmd VimLeave * silent !echo -ne "\033]112\007"
+    "    let &t_SI = "\<Esc>]12;green\x7\<Esc>[5 q" " cursor color in insert mode
+    "    let &t_EI = "\<Esc>]12;white\x7"   " cursor color in normal mode
+    " }
+    call SourceVimDirectory('vimrc/visuals-post')
 " }}}
 " Maps {{{
+    call SourceVimDirectory('vimrc/maps-pre')
     " Use <Leader> in maps, so it's easier to share them, yet still allow
     " anyone to use them in their own, personalized way. Remember, not all
     " keyboards have US layout.
@@ -162,48 +170,63 @@
     " Use <LocalLeader> for maps which (logistically) map to operations on
     " the local buffer only.
     let maplocaleader='\\'
+    call SourceVimDirectory('vimrc/maps-post')
+" }}}
+" Automatizations {{{
+    call SourceVimDirectory('vimrc/automatizations-pre')
+    call SourceVimDirectory('vimrc/automatizations-post')
 " }}}
 " Abbreviations {{{
+    call SourceVimDirectory('vimrc/abbreviations-pre')
     " Use abbreviations for common text you find yourself typing over and over
     " again.
     " Typos {
     " }
+    call SourceVimDirectory('vimrc/abbreviations-post')
 " }}}
-" Force yourself to learn proper vim {{{
+" vimrc/Force yourself to learn proper vim {{{
     set mouse=""
     " PageDown and PageUp {
-        " there are other vim ways of moving around
-        " learn how to use those instad, like:
-        " marks
-        nnoremap <PageUp> <NOP>
-        nnoremap <PageDown> <NOP>
-        inoremap <PageUp> <NOP>
-        inoremap <PageDown> <NOP>
-        vnoremap <PageUp> <NOP>
-        vnoremap <PageDown> <NOP>
+        " there are other vim ways of moving around learn how to use those
+        " instead, like:
+        " marks, C-u, C-d
+        nnoremap <PageUp>       <NOP>
+        nnoremap <PageDown>     <NOP>
+        inoremap <PageUp>       <NOP>
+        inoremap <PageDown>     <NOP>
+        vnoremap <PageUp>       <NOP>
+        vnoremap <PageDown>     <NOP>
     " }
     " Mouse movement {
-        noremap <MiddleMouse> <NOP>
-        noremap <MouseUp> <NOP>
-        noremap <MouseDown> <NOP>
+        " reaching out to the mouse also means more finger movement than
+        " necessary
+        noremap <MiddleMouse>   <NOP>
+        noremap <MouseUp>       <NOP>
+        noremap <MouseDown>     <NOP>
     " }
     " Arrow keys {
-        nnoremap <UP> <NOP>
-        nnoremap <DOWN> <NOP>
-        nnoremap <LEFT> <NOP>
-        nnoremap <RIGHT> <NOP>
-        inoremap <UP> <NOP>
-        inoremap <DOWN> <NOP>
-        inoremap <LEFT> <NOP>
-        inoremap <RIGHT> <NOP>
-        vnoremap <UP> <NOP>
-        vnoremap <DOWN> <NOP>
-        vnoremap <LEFT> <NOP>
-        vnoremap <RIGHT> <NOP>
+        " needless to say, but: moving your fingers away from your home row
+        " (and you ARE touch typing, right?) also leads to more finger
+        " movement than it ought to be
+        nnoremap <UP>           <NOP>
+        nnoremap <DOWN>         <NOP>
+        nnoremap <LEFT>         <NOP>
+        nnoremap <RIGHT>        <NOP>
+        inoremap <UP>           <NOP>
+        inoremap <DOWN>         <NOP>
+        inoremap <LEFT>         <NOP>
+        inoremap <RIGHT>        <NOP>
+        vnoremap <UP>           <NOP>
+        vnoremap <DOWN>         <NOP>
+        vnoremap <LEFT>         <NOP>
+        vnoremap <RIGHT>        <NOP>
     " }
     " No repetitive HJKL {
-        " Author: Barry Arthur <bairui @ #vim / freenode>
+        " repeatedly pressing keys like j instead of using a number like 42j
+        " also leads to more finger movement than necessary
         let g:cursor_moving = 0
+        let g:in_recording = 0
+        let g:trap_keys = "hjklwWeE"
 
         function! TrapMovementKeys(key)
             augroup CursorMoving
@@ -217,10 +240,43 @@
             endif
         endfunction
 
-        nnoremap <expr> h TrapMovementKeys('h')
-        nnoremap <expr> j TrapMovementKeys('j')
-        nnoremap <expr> k TrapMovementKeys('k')
-        nnoremap <expr> l TrapMovementKeys('l')
+        function! SuspendDuringRecording()
+            if g:in_recording == 0
+                let l:code = getchar()
+                "let l:mode = getcharmod()
+                let g:in_recording = 1
+                let l:char = nr2char(l:code)
+                call UninstallTraps(g:trap_keys)
+                return 'q'.l:char
+            else
+                let g:in_recording = 0
+                call InstallTraps(g:trap_keys)
+                return 'q'
+            endif
+        endfunction
+
+        function! SuspendDuringPlayback()
+            call UninstallTraps(g:trap_keys)
+            let l:code = getchar()
+            let l:char = nr2char(l:code)
+            return "@".l:char.":call InstallTraps(g:trap_keys)\<CR>"
+        endfunction
+
+        function! InstallTraps(keys)
+            for l:key in split(a:keys, '\zs')
+                execute printf('nnoremap <expr> %s TrapMovementKeys("%s")', l:key, l:key)
+            endfor
+        endfunction
+
+        function! UninstallTraps(keys)
+            for l:key in split(a:keys, '\zs')
+                execute printf('nunmap %s', l:key)
+            endfor
+       endfunction
+
+        call InstallTraps(g:trap_keys)
+        nnoremap <expr> q SuspendDuringRecording()
+        nnoremap <silent> <expr> @ SuspendDuringPlayback()
 
         augroup CursorMovingOff
             autocmd!
